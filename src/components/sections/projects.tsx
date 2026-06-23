@@ -1,0 +1,183 @@
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import { ExternalLink, CheckCircle2 } from "lucide-react";
+import { FaGithub } from "react-icons/fa6";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+export default function Projects() {
+  const projects = [
+    {
+      title: "SVN Jewellery",
+      description: "Architected a scalable, type-safe e-commerce platform applying centralized TypeScript interfaces across the full stack to eliminate runtime type errors.",
+      features: [
+        "Architected Next.js + Node.js + MongoDB backend with centralized TypeScript interfaces.",
+        "Built dynamic product variant system (size, material, pricing, real-time stock).",
+        "Integrated Stripe API for PCI-compliant payments and Cloudinary CDN for optimized asset delivery.",
+        "Designed persistent cart/wishlist with Zustand state management for low-latency UX."
+      ],
+      tech: ["Next.js", "Node.js", "MongoDB", "TypeScript", "Stripe API", "Cloudinary", "Zustand"],
+      github: "https://github.com/Shweta-rani05/SVN-Jewellery",
+      live: "https://svn-jewellery.vercel.app",
+      screenshots: [
+        "/svn-hero.png",
+        "/svn-shop-look.png",
+      ],
+    },
+    {
+      title: "Wanderlust",
+      description: "Built a production-ready hotel booking application featuring end-to-end booking flows, secure user authentication, and advanced search functionality.",
+      features: [
+        "Designed and deployed 15+ RESTful API endpoints covering user management and listings.",
+        "Implemented full HTTP semantics, robust error handling, and stateless JWT authentication.",
+        "Integrated bcrypt password hashing for secure user access.",
+        "Developed responsive mobile-first UI with advanced search filtering and full CRUD operations."
+      ],
+      tech: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "bcrypt", "Tailwind CSS"],
+      github: "https://github.com/Shweta-rani05/wonderlust-mern",
+      live: "https://wonderlust-mern-kj89.onrender.com/",
+      screenshots: [
+        "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800&auto=format&fit=crop",
+      ],
+    },
+  ];
+
+  return (
+    <section id="projects" className="py-24 relative">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex flex-col items-center justify-center text-center mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-5xl font-bold mb-4 tracking-tight"
+          >
+            Featured <span className="text-primary">Projects</span>
+          </motion.h2>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="w-24 h-1 bg-gradient-to-r from-primary to-accent rounded-full"
+          />
+          <p className="mt-6 text-muted-foreground max-w-2xl mx-auto">
+            A showcase of my recent full-stack applications, featuring modern architectures, 
+            premium UI/UX design, and AI integrations.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+          {projects.map((project, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="group flex flex-col rounded-3xl bg-card border border-border overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
+            >
+              {/* Screenshots Carousel */}
+              <div className="relative h-64 w-full bg-muted overflow-hidden group/carousel">
+                <Carousel className="w-full h-full" opts={{ loop: true }}>
+                  <CarouselContent className="h-full">
+                    {project.screenshots.map((screenshot, sIdx) => (
+                      <CarouselItem key={sIdx} className="h-full">
+                        <img 
+                          src={screenshot}
+                          alt={`${project.title} screenshot ${sIdx + 1}`}
+                          className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+                        />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  
+                  {project.screenshots.length > 1 && (
+                    <div className="opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
+                      <div className="absolute left-2 top-1/2 -translate-y-1/2">
+                        <CarouselPrevious className="relative h-8 w-8 bg-background/80 backdrop-blur-sm border-none hover:bg-background/90" />
+                      </div>
+                      <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                        <CarouselNext className="relative h-8 w-8 bg-background/80 backdrop-blur-sm border-none hover:bg-background/90" />
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Overlay Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                  
+                  {/* Carousel Indicator Dots */}
+                  {project.screenshots.length > 1 && (
+                    <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 pointer-events-none">
+                      {project.screenshots.map((_, dotIdx) => (
+                        <div key={dotIdx} className="h-1.5 w-1.5 rounded-full bg-white/50" />
+                      ))}
+                    </div>
+                  )}
+                </Carousel>
+              </div>
+
+              {/* Project Info */}
+              <div className="p-6 md:p-8 flex flex-col flex-grow">
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  {project.description}
+                </p>
+
+                {/* Key Features Bullet Points */}
+                <div className="mb-6">
+                  <h4 className="text-sm font-semibold mb-3 text-foreground">Key Features</h4>
+                  <ul className="space-y-2">
+                    {project.features.map((feat, i) => (
+                      <li key={i} className="flex items-start space-x-2 text-sm text-muted-foreground leading-relaxed">
+                        <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="mb-6 mt-auto">
+                  <h4 className="text-sm font-semibold mb-3 text-foreground">Tech Stack</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((t, i) => (
+                      <Badge key={i} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20 border-none">
+                        {t}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-border flex items-center justify-between gap-4">
+                  <Button asChild variant="outline" className="flex-1 rounded-full hover-trigger">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      <FaGithub className="mr-2 h-4 w-4" />
+                      GitHub
+                    </a>
+                  </Button>
+                  <Button asChild className="flex-1 rounded-full group hover-trigger">
+                    <a href={project.live} target="_blank" rel="noopener noreferrer">
+                      Live Demo
+                      <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
