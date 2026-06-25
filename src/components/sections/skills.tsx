@@ -3,61 +3,45 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { Layout, Server, Code, Wrench, Sparkles, Code2 } from "lucide-react";
+import { Layout, Server, Database, Code, Wrench, Sparkles, Check } from "lucide-react";
 
 export default function Skills() {
   const skillCategories = [
     {
-      title: "Languages",
-      icon: <Code2 className="h-6 w-6 text-pink-500" />,
-      skills: ["JavaScript (ES6+)", "TypeScript", "C++", "Python"],
-    },
-    {
       title: "Frontend",
       icon: <Layout className="h-6 w-6 text-blue-400" />,
-      skills: [
-        "React.js",
-        "Next.js 14",
-        "Tailwind CSS",
-        "Redux Toolkit",
-        "Zustand",
-        "HTML5",
-        "CSS3",
-        "Responsive/Mobile-First Design"
-      ],
+      skills: ["React", "Next.js", "Tailwind CSS", "Redux Toolkit", "HTML5", "CSS3"],
+      isCurrent: false,
     },
     {
       title: "Backend",
       icon: <Server className="h-6 w-6 text-green-500" />,
-      skills: [
-        "Node.js",
-        "Express.js",
-        "RESTful API Design",
-        "JWT Authentication",
-        "bcrypt",
-        "Middleware Architecture",
-        "MVC Pattern"
-      ],
+      skills: ["Node.js", "Express", "REST APIs", "JWT", "bcrypt", "MVC Architecture"],
+      isCurrent: false,
     },
     {
       title: "Database",
-      icon: <Layout className="h-6 w-6 text-purple-500" />,
-      skills: ["MongoDB", "Mongoose ODM", "Schema Design", "Aggregation Pipelines", "SQL (basic)"],
+      icon: <Database className="h-6 w-6 text-purple-500" />,
+      skills: ["MongoDB", "Mongoose", "Aggregation", "Schema Design", "SQL Basics"],
+      isCurrent: false,
     },
     {
-      title: "Cloud & Payments",
-      icon: <Sparkles className="h-6 w-6 text-sky-400" />,
-      skills: ["Stripe API", "Cloudinary CDN", "Vercel", "Render", "Docker (basic)"],
+      title: "Languages",
+      icon: <Code className="h-6 w-6 text-pink-500" />,
+      skills: ["JavaScript", "TypeScript", "Python", "C++"],
+      isCurrent: false,
     },
     {
       title: "Dev Tools",
       icon: <Wrench className="h-6 w-6 text-orange-500" />,
-      skills: ["Git", "GitHub", "Postman", "Vite", "npm", "VS Code"],
+      skills: ["Git", "GitHub", "Docker", "Postman", "VS Code", "Vercel", "Render"],
+      isCurrent: false,
     },
     {
-      title: "CS Fundamentals",
-      icon: <Code className="h-6 w-6 text-primary" />,
-      skills: ["DSA (100+ problems — Arrays, Trees, Graphs, DP)", "OOP", "DBMS", "System Design (basic)", "Agile/Scrum"],
+      title: "Currently Learning",
+      icon: <Sparkles className="h-6 w-6 text-amber-500 animate-pulse" />,
+      skills: ["System Design", "Redis", "Docker", "CI/CD", "FastAPI", "Generative AI"],
+      isCurrent: true,
     },
   ];
 
@@ -66,7 +50,7 @@ export default function Skills() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
       },
     },
   };
@@ -77,9 +61,11 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="py-24 relative">
+    <section id="skills" className="py-16 relative">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center text-center mb-16">
+        
+        {/* Title */}
+        <div className="flex flex-col items-center justify-center text-center mb-12">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -96,42 +82,64 @@ export default function Skills() {
           />
         </div>
 
+        {/* Skills Grid */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
         >
           {skillCategories.map((category, idx) => (
             <motion.div
               key={idx}
               variants={itemVariants}
-              whileHover={{ y: -5 }}
-              className={`p-6 rounded-3xl bg-card border border-border shadow-sm backdrop-blur-xl hover:shadow-md transition-all ${
-                idx === 4 ? "md:col-span-2 lg:col-span-1" : ""
+              whileHover={{ y: -4 }}
+              className={`p-6 rounded-3xl bg-card border hover:shadow-md transition-all duration-300 flex flex-col h-full ${
+                category.isCurrent 
+                  ? "border-accent/40 bg-gradient-to-br from-card to-accent/5" 
+                  : "border-border hover:border-primary/30"
               }`}
             >
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="p-3 rounded-2xl bg-background border border-border shadow-inner">
+              <div className="flex items-center space-x-3.5 mb-6">
+                <div className="p-2.5 rounded-2xl bg-muted border border-border shadow-inner">
                   {category.icon}
                 </div>
-                <h3 className="text-xl font-semibold">{category.title}</h3>
+                <h3 className="text-lg font-bold text-foreground">{category.title}</h3>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <Badge 
-                    key={skill} 
-                    variant="secondary" 
-                    className="px-3 py-1 text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
-                  >
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
+
+              {category.isCurrent ? (
+                /* "Currently Learning" List Item Format */
+                <ul className="space-y-2.5 mt-auto">
+                  {category.skills.map((skill, sIdx) => (
+                    <li key={sIdx} className="flex items-center gap-2 group">
+                      <div className="p-0.5 rounded bg-accent/10 border border-accent/20 text-accent">
+                        <Check className="h-3.5 w-3.5" />
+                      </div>
+                      <span className="text-xs font-semibold text-muted-foreground group-hover:text-foreground transition-colors">
+                        {skill}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                /* Standard Tech Stack Badges Grid */
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {category.skills.map((skill, sIdx) => (
+                    <Badge 
+                      key={sIdx} 
+                      variant="secondary" 
+                      className="px-2.5 py-1 text-xs font-semibold bg-primary/5 text-primary border-none hover:bg-primary/10 transition-colors"
+                    >
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              )}
             </motion.div>
           ))}
         </motion.div>
+
       </div>
     </section>
   );

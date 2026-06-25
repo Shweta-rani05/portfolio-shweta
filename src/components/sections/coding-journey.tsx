@@ -5,12 +5,11 @@ import { motion } from "framer-motion";
 import { GitHubCalendar } from "react-github-calendar";
 import { useTheme } from "next-themes";
 import { 
-  Milestone, 
-  Terminal, 
-  BookOpen, 
-  Layers, 
-  Sparkles, 
-  Target
+  ExternalLink,
+  Check,
+  Brain,
+  Flame,
+  Code2
 } from "lucide-react";
 import { fetchLeetcodeStats } from "@/app/actions/leetcode";
 
@@ -28,7 +27,7 @@ interface LeetCodeStats {
 
 export default function CodingJourney() {
   const { theme } = useTheme();
-  
+  const [mounted, setMounted] = useState(false);
   const [leetcodeData, setLeetcodeData] = useState<LeetCodeStats | null>(null);
   const [loadingLeetcode, setLoadingLeetcode] = useState(true);
 
@@ -45,6 +44,7 @@ export default function CodingJourney() {
   };
 
   useEffect(() => {
+    setMounted(true);
     fetchLeetcodeStats("_shweta_05")
       .then((res) => {
         if (res.success && res.data) {
@@ -62,51 +62,29 @@ export default function CodingJourney() {
   }, []);
 
   const currentLeetcode = leetcodeData || fallbackLeetcode;
-
-  const journeySteps = [
-    {
-      icon: <Terminal className="h-5 w-5" />,
-      title: "Solving DSA Daily",
-      desc: "Consistent practice on LeetCode to master algorithms and data structures.",
-    },
-    {
-      icon: <BookOpen className="h-5 w-5" />,
-      title: "Backend Revision",
-      desc: "Deepening knowledge of Node.js, Express, and database management.",
-    },
-    {
-      icon: <Layers className="h-5 w-5" />,
-      title: "Learning System Design",
-      desc: "Understanding how to build scalable and highly available distributed systems.",
-    },
-    {
-      icon: <Sparkles className="h-5 w-5" />,
-      title: "Building AI Projects",
-      desc: "Integrating LLMs and exploring intelligent agent workflows.",
-    },
-    {
-      icon: <Target className="h-5 w-5" />,
-      title: "Preparing for Internships",
-      desc: "Actively seeking Software Engineering roles at top-tier companies.",
-    },
-  ];
-
-  // LeetCode totals
   const totalQuestions = currentLeetcode.totalEasy + currentLeetcode.totalMedium + currentLeetcode.totalHard;
 
+  const learningTopics = [
+    "Backend Engineering",
+    "System Design",
+    "Data Structures & Algorithms",
+    "Docker & Redis",
+    "Generative AI"
+  ];
+
   return (
-    <section id="journey" className="py-24 relative overflow-hidden bg-background">
+    <section id="journey" className="py-16 relative bg-background">
       <div className="container mx-auto px-4 md:px-6">
         
         {/* Title */}
-        <div className="flex flex-col items-center justify-center text-center mb-16">
+        <div className="flex flex-col items-center justify-center text-center mb-12">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-bold mb-4 tracking-tight"
           >
-            Coding <span className="text-primary">Journey</span>
+            Developer <span className="text-primary">Activity</span>
           </motion.h2>
           <motion.div 
             initial={{ opacity: 0, scale: 0.5 }}
@@ -116,47 +94,170 @@ export default function CodingJourney() {
           />
         </div>
 
-        {/* Top Section: Timeline & Consistency Graph */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Timeline */}
-          <div className="relative">
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-border" />
-            <div className="space-y-8">
-              {journeySteps.map((step, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="relative pl-20"
-                >
-                  <div className="absolute left-4 top-1 w-8 h-8 rounded-full bg-background border-2 border-primary flex items-center justify-center text-primary shadow-[0_0_15px_rgba(124,58,237,0.3)]">
-                    {step.icon}
-                  </div>
-                  <h3 className="text-xl font-bold mb-1">{step.title}</h3>
-                  <p className="text-muted-foreground">{step.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* GitHub Consistency Calendar */}
+        {/* 2-Column Grid for Currently Learning and LeetCode Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-8">
+          
+          {/* Card 1: Currently Learning */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-card border border-border p-6 md:p-8 rounded-3xl shadow-sm hover:shadow-md transition-shadow w-full overflow-hidden"
+            whileHover={{ y: -4 }}
+            className="p-6 md:p-8 rounded-3xl bg-card border border-border hover:border-primary/30 transition-all duration-300 flex flex-col justify-between"
           >
-            <div className="flex items-center space-x-3 mb-6">
-              <Milestone className="h-6 w-6 text-accent" />
-              <h3 className="text-2xl font-bold">Consistency Graph</h3>
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2.5 rounded-2xl bg-muted border border-border">
+                  <Brain className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">Currently Learning</h3>
+              </div>
+              
+              <ul className="space-y-3.5">
+                {learningTopics.map((topic, idx) => (
+                  <li key={idx} className="flex items-center gap-3 group">
+                    <div className="p-1 rounded-full bg-primary/10 border border-primary/20 text-primary">
+                      <Check className="h-3.5 w-3.5" />
+                    </div>
+                    <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                      {topic}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <p className="text-muted-foreground mb-8">
-              A visual representation of my daily coding habits and contributions.
-            </p>
-            <div className="overflow-x-auto pb-4 custom-scrollbar">
-              <div className="min-w-[700px]">
+          </motion.div>
+
+          {/* Card 2: LeetCode Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -4 }}
+            className="p-6 md:p-8 rounded-3xl bg-card border border-border hover:border-accent/30 transition-all duration-300 flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2.5 rounded-2xl bg-muted border border-border">
+                  <Flame className="h-6 w-6 text-accent" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">LeetCode Stats</h3>
+              </div>
+
+              <div className="grid grid-cols-12 gap-4 items-center">
+                {/* Left Side: Solved Circle */}
+                <div className="col-span-5 flex flex-col items-center justify-center">
+                  <div className="relative flex justify-center items-center h-24 w-24">
+                    <svg className="w-full h-full transform -rotate-90">
+                      <circle
+                        cx="48"
+                        cy="48"
+                        r="38"
+                        className="stroke-muted"
+                        strokeWidth="6"
+                        fill="none"
+                      />
+                      <circle
+                        cx="48"
+                        cy="48"
+                        r="38"
+                        className="stroke-primary transition-all duration-1000"
+                        strokeWidth="6"
+                        fill="none"
+                        strokeDasharray={2 * Math.PI * 38}
+                        strokeDashoffset={2 * Math.PI * 38 * (1 - (currentLeetcode.totalSolved || 0) / (totalQuestions || 1))}
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <div className="absolute flex flex-col items-center justify-center">
+                      <span className="text-xl font-bold text-foreground leading-none">
+                        {currentLeetcode.totalSolved}
+                      </span>
+                      <span className="text-[10px] text-muted-foreground mt-0.5 uppercase tracking-wider font-semibold">
+                        Solved
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Side: Category Breakdown */}
+                <div className="col-span-7 space-y-2.5">
+                  {/* Easy */}
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-xs font-semibold">
+                      <span className="text-teal-500">Easy</span>
+                      <span className="text-muted-foreground">{currentLeetcode.easySolved}/{currentLeetcode.totalEasy}</span>
+                    </div>
+                    <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-teal-500 rounded-full" 
+                        style={{ width: `${((currentLeetcode.easySolved || 0) / (currentLeetcode.totalEasy || 1)) * 100}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Medium */}
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-xs font-semibold">
+                      <span className="text-yellow-500">Medium</span>
+                      <span className="text-muted-foreground">{currentLeetcode.mediumSolved}/{currentLeetcode.totalMedium}</span>
+                    </div>
+                    <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-yellow-500 rounded-full" 
+                        style={{ width: `${((currentLeetcode.mediumSolved || 0) / (currentLeetcode.totalMedium || 1)) * 100}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Hard */}
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-xs font-semibold">
+                      <span className="text-red-500">Hard</span>
+                      <span className="text-muted-foreground">{currentLeetcode.hardSolved}/{currentLeetcode.totalHard}</span>
+                    </div>
+                    <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-red-500 rounded-full" 
+                        style={{ width: `${((currentLeetcode.hardSolved || 0) / (currentLeetcode.totalHard || 1)) * 100}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a
+              href="https://leetcode.com/u/_shweta_05/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 flex items-center justify-center gap-1.5 w-full py-2 rounded-full border border-border hover:bg-accent text-xs font-semibold transition-all duration-300 group"
+            >
+              View LeetCode Profile
+              <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+          </motion.div>
+
+        </div>
+
+        {/* GitHub Calendar Card (Full Width) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          whileHover={{ y: -4 }}
+          className="max-w-5xl mx-auto p-6 md:p-8 rounded-3xl bg-card border border-border hover:border-primary/30 transition-all duration-300"
+        >
+          <div className="flex items-center space-x-3 mb-4">
+            <Code2 className="h-6 w-6 text-primary" />
+            <h3 className="text-xl font-bold">GitHub Contributions</h3>
+          </div>
+          <p className="text-muted-foreground text-sm mb-6">
+            A real-time visualization of my daily code updates and developer consistency graph.
+          </p>
+          <div className="overflow-x-auto pb-2 custom-scrollbar">
+            <div className="min-w-[700px] flex justify-center">
+              {mounted ? (
                 <GitHubCalendar 
                   username="Shweta-rani05" 
                   colorScheme={theme === "dark" ? "dark" : "light"}
@@ -169,130 +270,12 @@ export default function CodingJourney() {
                   }}
                   showWeekdayLabels
                 />
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* LeetCode Solved Stats Section */}
-        <div className="mt-20 border-t border-border/60 pt-16">
-          <div className="flex flex-col items-center justify-center text-center mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">
-              LeetCode <span className="text-primary">Stats</span>
-            </h3>
-            <p className="text-muted-foreground text-sm max-w-md">
-              Real-time problem-solving progress fetched dynamically from LeetCode.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 max-w-4xl mx-auto w-full">
-            {/* Left Column: Radial Circle */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="md:col-span-5 bg-card border border-border p-6 md:p-8 rounded-3xl flex flex-col items-center justify-center text-center"
-            >
-              <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wider mb-6">Overall Progress</span>
-              
-              <div className="relative flex justify-center items-center h-40 w-40">
-                <svg className="w-full h-full transform -rotate-90">
-                  <circle
-                    cx="80"
-                    cy="80"
-                    r="60"
-                    className="stroke-muted"
-                    strokeWidth="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="80"
-                    cy="80"
-                    r="60"
-                    className="stroke-primary transition-all duration-1000"
-                    strokeWidth="8"
-                    fill="none"
-                    strokeDasharray={2 * Math.PI * 60}
-                    strokeDashoffset={2 * Math.PI * 60 * (1 - (currentLeetcode.totalSolved || 0) / (totalQuestions || 1))}
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <div className="absolute flex flex-col items-center justify-center">
-                  <span className="text-3xl font-bold text-foreground leading-none">
-                    {currentLeetcode.totalSolved}
-                  </span>
-                  <span className="text-xs text-muted-foreground mt-1">
-                    / {totalQuestions} Solved
-                  </span>
-                </div>
-              </div>
-
-              {currentLeetcode.ranking > 0 && (
-                <div className="mt-6 text-sm text-muted-foreground">
-                  Ranking: <strong className="text-foreground">#{currentLeetcode.ranking.toLocaleString()}</strong>
-                </div>
+              ) : (
+                <div className="h-[120px] w-full bg-muted/20 animate-pulse rounded-xl" />
               )}
-            </motion.div>
-
-            {/* Right Column: Category Breakdown */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="md:col-span-7 bg-card border border-border p-6 md:p-8 rounded-3xl flex flex-col justify-center space-y-6"
-            >
-              <span className="text-xs text-muted-foreground font-semibold uppercase tracking-wider mb-2">Category Breakdown</span>
-
-              {/* Easy Progress */}
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="font-semibold text-teal-500">Easy</span>
-                  <span className="text-muted-foreground font-medium">
-                    {currentLeetcode.easySolved} <span className="text-xs text-muted-foreground/60">/ {currentLeetcode.totalEasy}</span>
-                  </span>
-                </div>
-                <div className="h-3 bg-muted rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-teal-500 rounded-full transition-all duration-1000" 
-                    style={{ width: `${((currentLeetcode.easySolved || 0) / (currentLeetcode.totalEasy || 1)) * 100}%` }}
-                  />
-                </div>
-              </div>
-
-              {/* Medium Progress */}
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="font-semibold text-yellow-500">Medium</span>
-                  <span className="text-muted-foreground font-medium">
-                    {currentLeetcode.mediumSolved} <span className="text-xs text-muted-foreground/60">/ {currentLeetcode.totalMedium}</span>
-                  </span>
-                </div>
-                <div className="h-3 bg-muted rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-yellow-500 rounded-full transition-all duration-1000" 
-                    style={{ width: `${((currentLeetcode.mediumSolved || 0) / (currentLeetcode.totalMedium || 1)) * 100}%` }}
-                  />
-                </div>
-              </div>
-
-              {/* Hard Progress */}
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="font-semibold text-red-500">Hard</span>
-                  <span className="text-muted-foreground font-medium">
-                    {currentLeetcode.hardSolved} <span className="text-xs text-muted-foreground/60">/ {currentLeetcode.totalHard}</span>
-                  </span>
-                </div>
-                <div className="h-3 bg-muted rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-red-500 rounded-full transition-all duration-1000" 
-                    style={{ width: `${((currentLeetcode.hardSolved || 0) / (currentLeetcode.totalHard || 1)) * 100}%` }}
-                  />
-                </div>
-              </div>
-            </motion.div>
+            </div>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>
