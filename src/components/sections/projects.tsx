@@ -34,7 +34,7 @@ export default function Projects() {
       ],
     },
     {
-      title: "Wanderlust",
+      title: "Wonderlust",
       description: "Built a production-ready hotel booking application featuring end-to-end booking flows, secure user authentication, and advanced search functionality.",
       features: [
         "Designed and deployed 15+ RESTful API endpoints covering user management and listings.",
@@ -46,7 +46,7 @@ export default function Projects() {
       github: "https://github.com/Shweta-rani05/wonderlust-mern",
       live: "https://wonderlust-mern-kj89.onrender.com/",
       screenshots: [
-        "/wanderlust-home.png",
+        "/wonderlust-home.png",
       ],
     },
   ];
@@ -91,11 +91,13 @@ export default function Projects() {
                   <CarouselContent className="h-full">
                     {project.screenshots.map((screenshot, sIdx) => (
                       <CarouselItem key={sIdx} className="h-full">
-                        <img 
-                          src={screenshot}
-                          alt={`${project.title} screenshot ${sIdx + 1}`}
-                          className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
-                        />
+                        <a href={project.live} target="_blank" rel="noopener noreferrer" className="block w-full h-full cursor-pointer">
+                          <img 
+                            src={screenshot}
+                            alt={`${project.title} screenshot ${sIdx + 1}`}
+                            className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+                          />
+                        </a>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
@@ -128,7 +130,9 @@ export default function Projects() {
               {/* Project Info */}
               <div className="p-6 md:p-8 flex flex-col flex-grow">
                 <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
-                  {project.title}
+                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-primary">
+                    {project.title}
+                  </a>
                 </h3>
                 <p className="text-muted-foreground mb-6">
                   {project.description}
