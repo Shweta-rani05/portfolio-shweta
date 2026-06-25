@@ -2,16 +2,54 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { Layout, Server, Database, Wrench } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export default function TechStack() {
-  const technologies = [
-    "React", "Next.js", "Node.js", "Express", "MongoDB", "JavaScript", 
-    "TypeScript", "Python", "Git", "GitHub", "Tailwind", "Redux", 
-    "Vite", "Docker", "FastAPI", "AI"
+  const categories = [
+    {
+      title: "Frontend",
+      icon: <Layout className="h-6 w-6 text-primary" />,
+      skills: ["React", "Next.js", "Tailwind CSS", "Redux"],
+      bg: "hover:border-primary/30",
+    },
+    {
+      title: "Backend",
+      icon: <Server className="h-6 w-6 text-accent" />,
+      skills: ["Node.js", "Express", "JWT", "REST APIs"],
+      bg: "hover:border-accent/30",
+    },
+    {
+      title: "Database",
+      icon: <Database className="h-6 w-6 text-blue-500" />,
+      skills: ["MongoDB", "SQL"],
+      bg: "hover:border-blue-500/30",
+    },
+    {
+      title: "Tools & DevOps",
+      icon: <Wrench className="h-6 w-6 text-amber-500" />,
+      skills: ["Git", "Docker", "Postman", "Vercel", "Render"],
+      bg: "hover:border-amber-500/30",
+    },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center justify-center text-center mb-16">
           <motion.h2 
@@ -30,33 +68,37 @@ export default function TechStack() {
           />
         </div>
 
-        <div className="relative w-full max-w-5xl mx-auto flex flex-wrap justify-center gap-4 md:gap-6">
-          {technologies.map((tech, idx) => (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto"
+        >
+          {categories.map((cat, idx) => (
             <motion.div
               key={idx}
-              drag
-              dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-              dragElastic={0.2}
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{
-                type: "spring",
-                stiffness: 260,
-                damping: 20,
-                delay: idx * 0.05,
-              }}
-              whileHover={{ scale: 1.1, rotate: Math.random() * 10 - 5 }}
-              className="cursor-grab active:cursor-grabbing px-6 py-3 rounded-full bg-card border border-border shadow-sm text-foreground font-medium flex items-center justify-center hover:border-primary/50 hover:text-primary transition-colors select-none"
+              variants={cardVariants}
+              whileHover={{ y: -6 }}
+              className={`p-6 rounded-3xl bg-card border border-border shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full ${cat.bg}`}
             >
-              {tech}
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2.5 rounded-2xl bg-muted border border-border">
+                  {cat.icon}
+                </div>
+                <h3 className="text-lg font-bold text-foreground">{cat.title}</h3>
+              </div>
+
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {cat.skills.map((skill, sIdx) => (
+                  <Badge key={sIdx} variant="secondary" className="bg-primary/5 text-primary hover:bg-primary/10 border-none text-xs px-2.5 py-1">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
             </motion.div>
           ))}
-        </div>
-        
-        <p className="text-center text-muted-foreground text-sm mt-8">
-          * Drag the badges around!
-        </p>
+        </motion.div>
       </div>
     </section>
   );

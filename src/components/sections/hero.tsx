@@ -2,7 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
+import { FaGithub } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -82,30 +83,46 @@ export default function Hero() {
             </motion.h1>
             
             <motion.h3 variants={itemVariants} className="text-xl md:text-2xl font-semibold text-muted-foreground">
-              Full-Stack Developer | MERN Stack Developer | TypeScript & Next.js
+              Full-Stack Developer | MERN • TypeScript • Next.js
             </motion.h3>
             
-            <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-[600px] leading-relaxed">
-              Full-Stack MERN Engineer with proven experience delivering production-grade, scalable web applications from end to end. I ship features that matter: type-safe APIs, JWT authentication, Stripe payment flows, and cloud-optimized deployments.
+            <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-[650px] leading-relaxed">
+              Computer Science student passionate about building scalable full-stack web applications. Currently exploring Backend Engineering, System Design, Docker, and Generative AI while building real-world projects.
             </motion.p>
+
+            {/* Quick Highlights Badges */}
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-3 max-w-2xl mt-4">
+              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-card/40 border border-border/80 text-xs font-semibold text-foreground backdrop-blur-sm shadow-sm transition-colors hover:border-primary/30">
+                <span>🚀</span> 10+ Projects Built
+              </div>
+              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-card/40 border border-border/80 text-xs font-semibold text-foreground backdrop-blur-sm shadow-sm transition-colors hover:border-primary/30">
+                <span>💻</span> 100+ DSA Problems Solved
+              </div>
+              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-card/40 border border-border/80 text-xs font-semibold text-foreground backdrop-blur-sm shadow-sm transition-colors hover:border-primary/30">
+                <span>🌱</span> Learning System Design & GenAI
+              </div>
+              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-card/40 border border-border/80 text-xs font-semibold text-foreground backdrop-blur-sm shadow-sm transition-colors hover:border-primary/30">
+                <span>🔥</span> Open to Software Engineering Internships
+              </div>
+            </motion.div>
             
-            <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-4 pt-4">
-              <Button asChild size="lg" className="rounded-full group hover-trigger">
-                <Link href="#projects">
-                  View Projects
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-4 pt-6">
+              <Button asChild size="lg" className="rounded-full bg-primary hover:bg-primary/95 text-primary-foreground group hover-trigger px-6 shadow-md shadow-primary/20">
+                <Link href="#projects" className="flex items-center gap-2">
+                  🚀 View Projects
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full hover-trigger">
-                <a href="https://drive.google.com/file/d/1XtB9d-Vo83Xmj79HJsLrZrLtCyk9HSM-/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                  <Download className="mr-2 h-4 w-4" />
-                  View Resume
+              <Button asChild variant="outline" size="lg" className="rounded-full hover-trigger px-6 border-border hover:bg-accent">
+                <a href="https://github.com/Shweta-rani05" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                  <FaGithub className="h-4 w-4" />
+                  💻 GitHub
                 </a>
               </Button>
-              <Button asChild variant="ghost" size="lg" className="rounded-full hover-trigger">
-                <Link href="#contact">
-                  <Mail className="mr-2 h-4 w-4" />
-                  Contact Me
+              <Button asChild variant="outline" size="lg" className="rounded-full hover-trigger px-6 border-border hover:bg-accent">
+                <Link href="#contact" className="flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  ✉️ Contact Me
                 </Link>
               </Button>
             </motion.div>

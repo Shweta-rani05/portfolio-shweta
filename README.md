@@ -26,13 +26,13 @@ A modern, responsive, and interactive developer portfolio showcasing my projects
 
 ## 📂 Featured Projects
 
-* **Wonderlust** – Full-Stack MERN Hotel Booking Platform
-* **SVN Jewellery** – Modern E-commerce Website
+* **Wonderlust – Full-Stack Hotel Booking Platform** – Built a production-ready hotel booking application featuring end-to-end booking flows.
+* **SVN Jewellery – Full-Stack E-commerce Platform** – Architected a scalable, type-safe e-commerce platform.
 
 ### 📂 More Projects
-* **githubactionDemo** – GitHub Actions CI/CD workflows ([GitHub](https://github.com/Shweta-rani05/githubactionDemo))
-* **QuickChat** – React-based Chat Application ([GitHub](https://github.com/Shweta-rani05/QuickChat))
-* **Redux-todo-list-app** – React Redux Todo application ([GitHub](https://github.com/Shweta-rani05/Redux-todo-list-app))
+* **GitHub Actions CI/CD Demo** – Repository used for implementing and testing GitHub Actions workflows. ([GitHub](https://github.com/Shweta-rani05/githubactionDemo))
+* **QuickChat App** – React-based Chat Application. ([GitHub](https://github.com/Shweta-rani05/QuickChat))
+* **Redux Todo App** – React Redux Todo application. ([GitHub](https://github.com/Shweta-rani05/Redux-todo-list-app))
 
 ## 📬 Contact
 

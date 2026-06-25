@@ -6,7 +6,7 @@ import Projects from "@/components/sections/projects";
 import CodingJourney from "@/components/sections/coding-journey";
 import Achievements from "@/components/sections/achievements";
 import TechStack from "@/components/sections/tech-stack";
-import TestimonialsAndBlogs from "@/components/sections/testimonials-blogs";
+import CertificationsAndCommunity from "@/components/sections/certifications-community";
 import Contact from "@/components/sections/contact";
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
       <CodingJourney />
       <Achievements />
       <TechStack />
-      <TestimonialsAndBlogs />
+      <CertificationsAndCommunity />
       <Contact />
     </div>
   );

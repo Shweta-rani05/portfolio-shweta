@@ -2,33 +2,33 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Trophy, Star, ThumbsUp, Code, Laptop, Flame } from "lucide-react";
+import { Briefcase, Award, Code2, Flame } from "lucide-react";
 
 export default function Achievements() {
   const achievements = [
     {
-      title: "Skyscanner FE Experience (Forage)",
-      value: "React App Dev",
-      icon: <Laptop className="h-8 w-8 text-primary" />,
+      title: "Full Stack Developer Intern – Noodiyos",
+      value: "Software Internship",
+      icon: <Briefcase className="h-8 w-8 text-primary" />,
       color: "from-primary/20 to-transparent",
     },
     {
-      title: "Smart India Hackathon",
-      value: "SIH Participant",
-      icon: <Trophy className="h-8 w-8 text-amber-500" />,
+      title: "Letter of Recommendation",
+      value: "Outstanding Performance",
+      icon: <Award className="h-8 w-8 text-amber-500" />,
       color: "from-amber-500/20 to-transparent",
     },
     {
-      title: "100+ DSA Solved Problems",
-      value: "Arrays, Trees, Graphs, DP",
-      icon: <Flame className="h-8 w-8 text-orange-500" />,
-      color: "from-orange-500/20 to-transparent",
+      title: "10+ Full-Stack Projects Built",
+      value: "Scale & Architecture",
+      icon: <Code2 className="h-8 w-8 text-blue-500" />,
+      color: "from-blue-500/20 to-transparent",
     },
     {
-      title: "GitHub Iterative Ownership",
-      value: "Consistent Commits",
-      icon: <Code className="h-8 w-8 text-blue-500" />,
-      color: "from-blue-500/20 to-transparent",
+      title: "100+ DSA Problems Solved",
+      value: "LeetCode & GFG",
+      icon: <Flame className="h-8 w-8 text-orange-500" />,
+      color: "from-orange-500/20 to-transparent",
     },
   ];
 
@@ -48,7 +48,7 @@ export default function Achievements() {
   };
 
   return (
-    <section className="py-24 relative bg-muted/30">
+    <section className="py-20 relative bg-muted/30">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center justify-center text-center mb-16">
           <motion.h2 
@@ -78,15 +78,15 @@ export default function Achievements() {
             <motion.div
               key={idx}
               variants={itemVariants}
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-3xl bg-card border border-border p-6 flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all group"
+              whileHover={{ y: -8 }}
+              className="relative overflow-hidden rounded-3xl bg-card border border-border hover:border-accent/30 p-6 flex flex-col items-center text-center shadow-sm hover:shadow-xl transition-all duration-300 group"
             >
               <div className={`absolute top-0 left-0 right-0 h-24 bg-gradient-to-b ${item.color} opacity-50 pointer-events-none`} />
-              <div className="mb-4 z-10 p-4 bg-background rounded-full border border-border group-hover:scale-110 transition-transform">
+              <div className="mb-4 z-10 p-4 bg-background rounded-full border border-border group-hover:scale-110 transition-transform duration-300">
                 {item.icon}
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-2 z-10">{item.value}</h3>
-              <p className="text-sm text-muted-foreground z-10">{item.title}</p>
+              <h3 className="text-lg font-bold text-foreground mb-2 z-10 leading-snug">{item.title}</h3>
+              <p className="text-xs text-muted-foreground z-10 uppercase tracking-wider font-semibold">{item.value}</p>
             </motion.div>
           ))}
         </motion.div>

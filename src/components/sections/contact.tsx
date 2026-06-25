@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Send, MapPin, Mail } from "lucide-react";
-import { FaLinkedin, FaGithub } from "react-icons/fa6";
+import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -92,48 +92,115 @@ export default function Contact() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 space-y-8"
+            className="lg:col-span-2"
           >
-            <div className="p-8 rounded-3xl bg-card border border-border shadow-sm">
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+            <div className="p-8 rounded-3xl bg-card border border-border hover:border-primary/30 shadow-sm transition-all duration-500 space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold mb-2 text-foreground">Let&apos;s Connect</h3>
+                
+                {/* Internship Status Badge */}
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-semibold text-emerald-400 mt-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Open to Software Engineering Internships
+                </div>
+              </div>
               
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-full bg-primary/10 text-primary shrink-0">
-                    <Mail className="h-6 w-6" />
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors group">
+                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
+                    <Mail className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Email</h4>
-                    <a href="mailto:ranishweta96936@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                    <p className="text-[10px] text-muted-foreground/60 font-semibold tracking-wider uppercase">EMAIL</p>
+                    <a href="mailto:ranishweta96936@gmail.com" className="text-sm font-semibold transition-colors">
                       ranishweta96936@gmail.com
                     </a>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-full bg-accent/10 text-accent shrink-0">
-                    <MapPin className="h-6 w-6" />
+                <div className="flex items-center gap-3 text-muted-foreground group">
+                  <div className="p-2.5 rounded-xl bg-accent/10 text-accent transition-colors group-hover:bg-accent/20">
+                    <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Location</h4>
-                    <p className="text-muted-foreground">India</p>
+                    <p className="text-[10px] text-muted-foreground/60 font-semibold tracking-wider uppercase">LOCATION</p>
+                    <p className="text-sm font-semibold text-foreground">India</p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-10 pt-8 border-t border-border">
-                <h3 className="font-semibold text-foreground mb-4">Social Profiles</h3>
-                <div className="flex gap-4">
-                  <a href="https://github.com/Shweta-rani05" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all">
-                    <FaGithub className="h-5 w-5" />
+              {/* Social Profiles */}
+              <div className="pt-6 border-t border-border space-y-3">
+                <h4 className="text-xs font-semibold text-foreground uppercase tracking-wider">Social Profiles</h4>
+                <div className="flex flex-wrap gap-2.5">
+                  <a 
+                    href="https://github.com/Shweta-rani05" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="p-3 rounded-full bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  >
+                    <FaGithub className="h-4 w-4" />
+                    <span className="sr-only">GitHub</span>
                   </a>
-                  <a href="https://www.linkedin.com/in/shweta-rani-11741028a" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-muted text-muted-foreground hover:bg-[#0077b5] hover:text-white transition-all">
-                    <FaLinkedin className="h-5 w-5" />
+                  <a 
+                    href="https://www.linkedin.com/in/shweta-rani-11741028a" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="p-3 rounded-full bg-muted text-muted-foreground hover:bg-[#0077b5] hover:text-white transition-all duration-300"
+                  >
+                    <FaLinkedin className="h-4 w-4" />
+                    <span className="sr-only">LinkedIn</span>
                   </a>
-                  <a href="https://leetcode.com/u/_shweta_05/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-muted text-muted-foreground hover:bg-[#ffa116] hover:text-white transition-all font-bold flex items-center justify-center text-sm w-11 h-11">
+                  <a 
+                    href="https://leetcode.com/u/_shweta_05/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="p-3 rounded-full bg-muted text-muted-foreground hover:bg-[#ffa116] hover:text-white transition-all duration-300 font-bold flex items-center justify-center text-xs w-10 h-10"
+                  >
                     LC
                   </a>
+                  <a 
+                    href="https://x.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="p-3 rounded-full bg-muted text-muted-foreground hover:bg-sky-500 hover:text-white transition-all duration-300"
+                  >
+                    <FaTwitter className="h-4 w-4" />
+                    <span className="sr-only">X (Twitter)</span>
+                  </a>
                 </div>
+              </div>
+
+              {/* Prominent CTA Buttons */}
+              <div className="pt-6 border-t border-border flex flex-col gap-3">
+                <Button asChild size="sm" className="w-full rounded-full bg-primary hover:bg-primary/95 text-primary-foreground font-semibold shadow-md shadow-primary/10">
+                  <a href="mailto:ranishweta96936@gmail.com" className="flex items-center justify-center gap-2">
+                    <Mail className="h-4 w-4" />
+                    Email Me
+                  </a>
+                </Button>
+                
+                <div className="grid grid-cols-2 gap-3">
+                  <Button asChild variant="outline" size="sm" className="rounded-full border-border hover:bg-accent font-semibold">
+                    <a href="https://github.com/Shweta-rani05" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5">
+                      <FaGithub className="h-4 w-4" />
+                      View GitHub
+                    </a>
+                  </Button>
+                  
+                  <Button asChild variant="outline" size="sm" className="rounded-full border-border hover:bg-accent font-semibold">
+                    <a href="https://www.linkedin.com/in/shweta-rani-11741028a" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5">
+                      <FaLinkedin className="h-4 w-4" />
+                      Connect
+                    </a>
+                  </Button>
+                </div>
+                
+                <Button asChild variant="outline" size="sm" className="w-full rounded-full border-border hover:bg-accent font-semibold">
+                  <a href="https://drive.google.com/file/d/1XtB9d-Vo83Xmj79HJsLrZrLtCyk9HSM-/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                    📄 View Resume
+                  </a>
+                </Button>
               </div>
             </div>
           </motion.div>
@@ -145,7 +212,7 @@ export default function Contact() {
             viewport={{ once: true }}
             className="lg:col-span-3"
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="p-8 rounded-3xl bg-card border border-border shadow-sm space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="p-8 rounded-3xl bg-card border border-border hover:border-primary/30 shadow-sm transition-all duration-500 space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-foreground">

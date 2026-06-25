@@ -17,13 +17,12 @@ import {
 export default function Projects() {
   const projects = [
     {
-      title: "SVN Jewellery",
+      title: "SVN Jewellery – Full-Stack E-commerce Platform",
       description: "Architected a scalable, type-safe e-commerce platform applying centralized TypeScript interfaces across the full stack to eliminate runtime type errors.",
       features: [
-        "Architected Next.js + Node.js + MongoDB backend with centralized TypeScript interfaces.",
-        "Built dynamic product variant system (size, material, pricing, real-time stock).",
-        "Integrated Stripe API for PCI-compliant payments and Cloudinary CDN for optimized asset delivery.",
-        "Designed persistent cart/wishlist with Zustand state management for low-latency UX."
+        "Architected scalable Next.js + Node.js + MongoDB backend with type-safe TypeScript interfaces.",
+        "Built dynamic product variant system supporting real-time size, material, and stock updates.",
+        "Integrated Stripe API for secure payments and Zustand state management for persistent carts."
       ],
       tech: ["Next.js", "Node.js", "MongoDB", "TypeScript", "Stripe API", "Cloudinary", "Zustand"],
       github: "https://github.com/Shweta-rani05/SVN-Jewellery",
@@ -34,13 +33,12 @@ export default function Projects() {
       ],
     },
     {
-      title: "Wonderlust",
+      title: "Wonderlust – Full-Stack Hotel Booking Platform",
       description: "Built a production-ready hotel booking application featuring end-to-end booking flows, secure user authentication, and advanced search functionality.",
       features: [
-        "Designed and deployed 15+ RESTful API endpoints covering user management and listings.",
-        "Implemented full HTTP semantics, robust error handling, and stateless JWT authentication.",
-        "Integrated bcrypt password hashing for secure user access.",
-        "Developed responsive mobile-first UI with advanced search filtering and full CRUD operations."
+        "Designed and deployed 15+ secure RESTful API endpoints with stateless JWT authentication.",
+        "Implemented password hashing using bcrypt alongside full error-handling middleware.",
+        "Developed responsive mobile-first UI with advanced search filters and full CRUD listings."
       ],
       tech: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "bcrypt", "Tailwind CSS"],
       github: "https://github.com/Shweta-rani05/wonderlust-mern",
@@ -53,19 +51,19 @@ export default function Projects() {
 
   const moreProjects = [
     {
-      title: "githubactionDemo",
+      title: "GitHub Actions CI/CD Demo",
       description: "Repository used for implementing and testing GitHub Actions workflows with CI/CD automation.",
       tech: ["GitHub Actions", "CI/CD", "JavaScript", "Automation"],
       github: "https://github.com/Shweta-rani05/githubactionDemo",
     },
     {
-      title: "QuickChat",
+      title: "QuickChat App",
       description: "A React-based chat application demonstrating modern frontend development practices, component-based architecture, and responsive design.",
       tech: ["React.js", "Socket.io", "JavaScript", "Tailwind CSS"],
       github: "https://github.com/Shweta-rani05/QuickChat",
     },
     {
-      title: "Redux-todo-list-app",
+      title: "Redux Todo App",
       description: "A React + Vite Redux Todo List App built to understand Redux Toolkit concepts like store, slice, actions, and reducers.",
       tech: ["React.js", "Vite", "Redux Toolkit", "JavaScript"],
       github: "https://github.com/Shweta-rani05/Redux-todo-list-app",
@@ -104,7 +102,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="group flex flex-col rounded-3xl bg-card border border-border overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
+              className="group flex flex-col rounded-3xl bg-card border border-border hover:border-primary/30 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
             >
               {/* Screenshots Carousel */}
               <div className="relative h-64 w-full bg-muted overflow-hidden group/carousel">
@@ -150,21 +148,31 @@ export default function Projects() {
 
               {/* Project Info */}
               <div className="p-6 md:p-8 flex flex-col flex-grow">
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  <span className="bg-primary/10 text-primary border border-primary/20 text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider">
+                    Featured
+                  </span>
+                  <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    Live
+                  </span>
+                </div>
+
+                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-tight">
                   <a href={project.live} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-primary">
                     {project.title}
                   </a>
                 </h3>
-                <p className="text-muted-foreground mb-6">
+                <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
                   {project.description}
                 </p>
 
                 {/* Key Features Bullet Points */}
                 <div className="mb-6">
-                  <h4 className="text-sm font-semibold mb-3 text-foreground">Key Features</h4>
+                  <h4 className="text-xs font-semibold mb-3 text-foreground uppercase tracking-wider">Key Features</h4>
                   <ul className="space-y-2">
                     {project.features.map((feat, i) => (
-                      <li key={i} className="flex items-start space-x-2 text-sm text-muted-foreground leading-relaxed">
+                      <li key={i} className="flex items-start space-x-2 text-xs text-muted-foreground leading-relaxed">
                         <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </li>
@@ -173,10 +181,10 @@ export default function Projects() {
                 </div>
                 
                 <div className="mb-6 mt-auto">
-                  <h4 className="text-sm font-semibold mb-3 text-foreground">Tech Stack</h4>
-                  <div className="flex flex-wrap gap-2">
+                  <h4 className="text-xs font-semibold mb-3 text-foreground uppercase tracking-wider">Tech Stack</h4>
+                  <div className="flex flex-wrap gap-1.5">
                     {project.tech.map((t, i) => (
-                      <Badge key={i} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20 border-none">
+                      <Badge key={i} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20 border-none text-xs px-2.5 py-0.5">
                         {t}
                       </Badge>
                     ))}
@@ -229,7 +237,7 @@ export default function Projects() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
               whileHover={{ y: -6 }}
-              className="group flex flex-col rounded-2xl bg-card border border-border p-6 shadow-sm hover:shadow-lg transition-all duration-300"
+              className="group flex flex-col rounded-2xl bg-card border border-border hover:border-primary/30 p-6 shadow-sm hover:shadow-lg transition-all duration-300"
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
@@ -264,6 +272,16 @@ export default function Projects() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* View All Projects Button */}
+        <div className="mt-12 flex justify-center">
+          <Button asChild variant="ghost" className="group text-muted-foreground hover:text-primary transition-all duration-300 text-sm font-semibold hover:bg-transparent">
+            <a href="https://github.com/Shweta-rani05?tab=repositories" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
+              View All Projects on GitHub
+              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
+          </Button>
         </div>
       </div>
     </section>
