@@ -82,9 +82,11 @@ export default function Hero() {
               </span>
             </motion.h1>
             
-            <motion.h3 variants={itemVariants} className="text-xl md:text-2xl font-semibold text-muted-foreground">
-              Full-Stack Developer | MERN • TypeScript • Next.js
-            </motion.h3>
+            <motion.div variants={itemVariants} className="text-xl md:text-2xl font-semibold text-muted-foreground flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+              <span>Full-Stack Developer</span>
+              <span className="hidden sm:inline text-primary/70 font-normal">|</span>
+              <span className="text-base md:text-lg text-muted-foreground/80">MERN • TypeScript • Next.js</span>
+            </motion.div>
             
             <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-[650px] leading-relaxed">
               Computer Science student passionate about building scalable full-stack web applications. Currently exploring Backend Engineering, System Design, Docker, and Generative AI while building real-world projects.
@@ -93,7 +95,7 @@ export default function Hero() {
             {/* Quick Highlights Badges */}
             <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-3 max-w-2xl mt-4">
               <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-card/40 border border-border/80 text-xs font-semibold text-foreground backdrop-blur-sm shadow-sm transition-colors hover:border-primary/30">
-                <span>🚀</span> 10+ Projects Built
+                <span>🚀</span> 5+ Projects Built
               </div>
               <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-card/40 border border-border/80 text-xs font-semibold text-foreground backdrop-blur-sm shadow-sm transition-colors hover:border-primary/30">
                 <span>💻</span> 100+ DSA Problems Solved
@@ -109,20 +111,20 @@ export default function Hero() {
             <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-4 pt-6">
               <Button asChild size="lg" className="rounded-full bg-primary hover:bg-primary/95 text-primary-foreground group hover-trigger px-6 shadow-md shadow-primary/20">
                 <Link href="#projects" className="flex items-center gap-2">
-                  🚀 View Projects
+                   View Projects
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full hover-trigger px-6 border-border hover:bg-accent">
                 <a href="https://github.com/Shweta-rani05" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   <FaGithub className="h-4 w-4" />
-                  💻 GitHub
+                   GitHub
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full hover-trigger px-6 border-border hover:bg-accent">
                 <Link href="#contact" className="flex items-center gap-2">
                   <Mail className="h-4 w-4" />
-                  ✉️ Contact Me
+                   Contact Me
                 </Link>
               </Button>
             </motion.div>
