@@ -51,6 +51,27 @@ export default function Projects() {
     },
   ];
 
+  const moreProjects = [
+    {
+      title: "githubactionDemo",
+      description: "Repository used for implementing and testing GitHub Actions workflows with CI/CD automation.",
+      tech: ["GitHub Actions", "CI/CD", "JavaScript", "Automation"],
+      github: "https://github.com/Shweta-rani05/githubactionDemo",
+    },
+    {
+      title: "QuickChat",
+      description: "A React-based chat application demonstrating modern frontend development practices, component-based architecture, and responsive design.",
+      tech: ["React.js", "Socket.io", "JavaScript", "Tailwind CSS"],
+      github: "https://github.com/Shweta-rani05/QuickChat",
+    },
+    {
+      title: "Redux-todo-list-app",
+      description: "A React + Vite Redux Todo List App built to understand Redux Toolkit concepts like store, slice, actions, and reducers.",
+      tech: ["React.js", "Vite", "Redux Toolkit", "JavaScript"],
+      github: "https://github.com/Shweta-rani05/Redux-todo-list-app",
+    },
+  ];
+
   return (
     <section id="projects" className="py-24 relative">
       <div className="container mx-auto px-4 md:px-6">
@@ -176,6 +197,70 @@ export default function Projects() {
                     </a>
                   </Button>
                 </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* More Projects Section */}
+        <div className="mt-24 flex flex-col items-center justify-center text-center mb-12">
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-3xl font-bold mb-4 tracking-tight"
+          >
+            More <span className="text-primary">Projects</span>
+          </motion.h3>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="w-16 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {moreProjects.map((project, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              whileHover={{ y: -6 }}
+              className="group flex flex-col rounded-2xl bg-card border border-border p-6 shadow-sm hover:shadow-lg transition-all duration-300"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
+                  <FaGithub className="h-6 w-6" />
+                </div>
+                <a 
+                  href={project.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <ExternalLink className="h-5 w-5" />
+                </a>
+              </div>
+
+              <h4 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  {project.title}
+                </a>
+              </h4>
+              
+              <p className="text-sm text-muted-foreground mb-6 flex-grow leading-relaxed">
+                {project.description}
+              </p>
+
+              <div className="flex flex-wrap gap-1.5 mt-auto">
+                {project.tech.map((t, i) => (
+                  <Badge key={i} variant="secondary" className="bg-primary/5 text-primary hover:bg-primary/10 border-none text-[11px] px-2 py-0.5">
+                    {t}
+                  </Badge>
+                ))}
               </div>
             </motion.div>
           ))}
