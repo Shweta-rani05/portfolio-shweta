@@ -30,14 +30,12 @@ A modern, responsive, and interactive developer portfolio showcasing my projects
 * **SVN Jewellery** – Modern E-commerce Website
 * Additional web development and frontend projects
 
-
 ## 📬 Contact
 
 Feel free to connect for internships, collaborations, or freelance opportunities.
 
 * GitHub: https://github.com/Shweta-rani05
 * LinkedIn: https://leetcode.com/u/_shweta_05/
-* Portfolio: coming soon 
 
 ## 📄 License
 

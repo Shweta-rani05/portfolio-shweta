@@ -46,8 +46,7 @@ export default function Projects() {
       github: "https://github.com/Shweta-rani05/wonderlust-mern",
       live: "https://wonderlust-mern-kj89.onrender.com/",
       screenshots: [
-        "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800&auto=format&fit=crop",
+        "/wanderlust-home.png",
       ],
     },
   ];
