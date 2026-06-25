@@ -28,30 +28,8 @@ A modern, responsive, and interactive developer portfolio showcasing my projects
 
 * **Wonderlust** – Full-Stack MERN Hotel Booking Platform
 * **SVN Jewellery** – Modern E-commerce Website
-* **Appetite Sense AI** – AI-powered Nutrition Assistant
 * Additional web development and frontend projects
 
-## 🚀 Getting Started
-
-Clone the repository:
-
-```bash
-git clone https://github.com/Shweta-rani05/portfolio-shweta.git
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Run the development server:
-
-```bash
-npm run dev
-```
-
-Open **http://localhost:3000** in your browser.
 
 ## 📬 Contact
 
