@@ -1,13 +1,58 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Mail, Heart } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { getLikes, toggleLike } from "@/app/actions/likes";
 
 export default function Hero() {
+  const [likesCount, setLikesCount] = useState(10);
+  const [hasLiked, setHasLiked] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const liked = localStorage.getItem("portfolio_liked") === "true";
+    setHasLiked(liked);
+
+    async function fetchLikes() {
+      try {
+        const res = await getLikes();
+        if (res.success) {
+          setLikesCount(res.count);
+        }
+      } catch (err) {
+        console.error("Failed to fetch likes:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchLikes();
+  }, []);
+
+  const handleLikeClick = async () => {
+    if (isLoading) return;
+    setIsLoading(true);
+
+    try {
+      const nextLikedState = !hasLiked;
+      const res = await toggleLike(hasLiked);
+      
+      if (res.success) {
+        setLikesCount(res.count);
+        setHasLiked(nextLikedState);
+        localStorage.setItem("portfolio_liked", String(nextLikedState));
+      }
+    } catch (err) {
+      console.error("Failed to toggle like:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -126,6 +171,24 @@ export default function Hero() {
                   <Mail className="h-4 w-4" />
                    Contact Me
                 </Link>
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className={cn(
+                  "rounded-full hover-trigger px-6 border-border hover:bg-accent transition-all duration-300 gap-2 select-none group/like",
+                  hasLiked && "border-red-500/30 bg-red-500/10 text-red-500 hover:bg-red-500/20 hover:text-red-600"
+                )}
+                onClick={handleLikeClick}
+                disabled={isLoading}
+              >
+                <Heart 
+                  className={cn(
+                    "h-4 w-4 transition-all duration-300", 
+                    hasLiked ? "fill-current text-red-500 scale-110" : "scale-100 group-hover/like:scale-110"
+                  )} 
+                />
+                <span>{likesCount}</span>
               </Button>
             </motion.div>
           </motion.div>
