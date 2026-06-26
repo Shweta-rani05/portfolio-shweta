@@ -160,7 +160,7 @@ export default function Contact() {
                     LC
                   </a>
                   <a 
-                    href="https://x.com/" 
+                    href="https://x.com/Shweta__rani" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="p-3 rounded-full bg-muted text-muted-foreground hover:bg-sky-500 hover:text-white transition-all duration-300"
@@ -196,11 +196,11 @@ export default function Contact() {
                   </Button>
                 </div>
                 
-                <Button asChild variant="outline" size="sm" className="w-full rounded-full border-border hover:bg-accent font-semibold">
+                {/* <Button asChild variant="outline" size="sm" className="w-full rounded-full border-border hover:bg-accent font-semibold">
                   <a href="https://drive.google.com/file/d/1XtB9d-Vo83Xmj79HJsLrZrLtCyk9HSM-/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                     📄 View Resume
                   </a>
-                </Button>
+                </Button> */}
               </div>
             </div>
           </motion.div>
