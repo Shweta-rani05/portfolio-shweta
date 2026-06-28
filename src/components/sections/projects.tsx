@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, CheckCircle2 } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -17,84 +17,101 @@ import {
 export default function Projects() {
   const projects = [
     {
-      title: "SVN Jewellery – Full-Stack E-commerce Platform",
-      description: "Architected a scalable, type-safe e-commerce platform applying centralized TypeScript interfaces across the full stack to eliminate runtime type errors.",
+      title: "SVN Jewellery - Full-Stack E-commerce Platform",
+      description:
+        "Architected a scalable, type-safe e-commerce platform with centralized TypeScript interfaces across the full stack.",
       features: [
-        "Architected scalable Next.js + Node.js + MongoDB backend with type-safe TypeScript interfaces.",
-        "Built dynamic product variant system supporting real-time size, material, and stock updates.",
-        "Integrated Stripe API for secure payments and Zustand state management for persistent carts."
+        "Scalable Next.js + Node.js + MongoDB backend with type-safe TypeScript interfaces",
+        "Dynamic product variant system supporting real-time size, material, and stock updates",
+        "Stripe API for secure payments and Zustand for persistent cart state management",
       ],
-      tech: ["Next.js", "Node.js", "MongoDB", "TypeScript", "Stripe API", "Cloudinary", "Zustand"],
+      tech: [
+        "Next.js",
+        "Node.js",
+        "MongoDB",
+        "TypeScript",
+        "Stripe",
+        "Cloudinary",
+        "Zustand",
+      ],
       github: "https://github.com/Shweta-rani05/SVN-Jewellery",
       live: "https://svn-jewellery.vercel.app",
-      screenshots: [
-        "/svn-hero.png",
-        "/svn-shop-look.png",
-      ],
+      screenshots: ["/svn-hero.png", "/svn-shop-look.png"],
     },
     {
-      title: "Wonderlust – Full-Stack Hotel Booking Platform",
-      description: "Built a production-ready hotel booking application featuring end-to-end booking flows, secure user authentication, and advanced search functionality.",
+      title: "Wonderlust - Full-Stack Hotel Booking Platform",
+      description:
+        "Production-ready hotel booking app with end-to-end booking flows, secure JWT authentication, and advanced search.",
       features: [
-        "Designed and deployed 15+ secure RESTful API endpoints with stateless JWT authentication.",
-        "Implemented password hashing using bcrypt alongside full error-handling middleware.",
-        "Developed responsive mobile-first UI with advanced search filters and full CRUD listings."
+        "15+ secure RESTful API endpoints with stateless JWT authentication",
+        "Password hashing with bcrypt and comprehensive error-handling middleware",
+        "Responsive mobile-first UI with advanced search filters and full CRUD listings",
       ],
-      tech: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "bcrypt", "Tailwind CSS"],
+      tech: [
+        "React.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "JWT",
+        "bcrypt",
+        "Tailwind CSS",
+      ],
       github: "https://github.com/Shweta-rani05/wonderlust-mern",
       live: "https://wonderlust-mern-kj89.onrender.com/",
-      screenshots: [
-        "/wonderlust-home.png",
-      ],
+      screenshots: ["/wonderlust-home.png"],
     },
   ];
 
   const moreProjects = [
     {
       title: "GitHub Actions CI/CD Demo",
-      description: "Repository used for implementing and testing GitHub Actions workflows with CI/CD automation.",
-      tech: ["GitHub Actions", "CI/CD", "JavaScript", "Automation"],
+      description:
+        "Implementing and testing GitHub Actions workflows with CI/CD automation.",
+      tech: ["GitHub Actions", "CI/CD", "JavaScript"],
       github: "https://github.com/Shweta-rani05/githubactionDemo",
     },
     {
       title: "QuickChat App",
-      description: "A React-based chat application demonstrating modern frontend development practices, component-based architecture, and responsive design.",
-      tech: ["React.js", "Socket.io", "JavaScript", "Tailwind CSS"],
+      description:
+        "Real-time chat application with component-based architecture and responsive design.",
+      tech: ["React.js", "Socket.io", "Tailwind CSS"],
       github: "https://github.com/Shweta-rani05/QuickChat",
     },
     {
       title: "Redux Todo App",
-      description: "A React + Vite Redux Todo List App built to understand Redux Toolkit concepts like store, slice, actions, and reducers.",
-      tech: ["React.js", "Vite", "Redux Toolkit", "JavaScript"],
+      description:
+        "Todo app built to understand Redux Toolkit concepts: store, slice, actions, reducers.",
+      tech: ["React.js", "Vite", "Redux Toolkit"],
       github: "https://github.com/Shweta-rani05/Redux-todo-list-app",
     },
   ];
 
   return (
     <section id="projects" className="py-24 relative">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center text-center mb-16">
-          <motion.h2 
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+        <div className="mb-16">
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold mb-4 tracking-tight"
+            className="text-3xl md:text-4xl font-bold tracking-tight"
           >
-            Featured <span className="text-primary">Projects</span>
+            Featured Projects
           </motion.h2>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="w-24 h-1 bg-gradient-to-r from-primary to-accent rounded-full"
-          />
-          <p className="mt-6 text-muted-foreground max-w-2xl mx-auto">
-            A showcase of my recent full-stack applications, featuring modern architectures, 
-            premium UI/UX design, and AI integrations.
-          </p>
+            transition={{ delay: 0.1 }}
+            className="mt-4 text-muted-foreground max-w-[55ch]"
+          >
+            Full-stack applications featuring modern architectures, premium
+            UI/UX, and real-world functionality.
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+        {/* Featured Projects - stacked layout */}
+        <div className="space-y-8 max-w-6xl">
           {projects.map((project, idx) => (
             <motion.div
               key={idx}
@@ -102,25 +119,32 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="group flex flex-col rounded-3xl bg-card border border-border hover:border-primary/30 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
+              className="group grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl bg-card border border-border hover:border-primary/30 overflow-hidden transition-all duration-300"
             >
-              {/* Screenshots Carousel */}
-              <div className="relative h-64 w-full bg-muted overflow-hidden group/carousel">
+              {/* Screenshot */}
+              <div className="relative h-64 lg:h-auto w-full bg-muted overflow-hidden group/carousel">
                 <Carousel className="w-full h-full" opts={{ loop: true }}>
                   <CarouselContent className="h-full">
                     {project.screenshots.map((screenshot, sIdx) => (
                       <CarouselItem key={sIdx} className="h-full">
-                        <a href={project.live} target="_blank" rel="noopener noreferrer" className="block w-full h-full cursor-pointer">
-                          <img 
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block w-full h-full cursor-pointer"
+                        >
+                          <Image
                             src={screenshot}
-                            alt={`${project.title} screenshot ${sIdx + 1}`}
+                            alt={`${project.title} screenshot`}
+                            width={800}
+                            height={500}
                             className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
                           />
                         </a>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  
+
                   {project.screenshots.length > 1 && (
                     <div className="opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
                       <div className="absolute left-2 top-1/2 -translate-y-1/2">
@@ -131,77 +155,81 @@ export default function Projects() {
                       </div>
                     </div>
                   )}
-                  
-                  {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                  
-                  {/* Carousel Indicator Dots */}
-                  {project.screenshots.length > 1 && (
-                    <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 pointer-events-none">
-                      {project.screenshots.map((_, dotIdx) => (
-                        <div key={dotIdx} className="h-1.5 w-1.5 rounded-full bg-white/50" />
-                      ))}
-                    </div>
-                  )}
                 </Carousel>
               </div>
 
               {/* Project Info */}
-              <div className="p-6 md:p-8 flex flex-col flex-grow">
-                <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <span className="bg-primary/10 text-primary border border-primary/20 text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider">
-                    Featured
-                  </span>
-                  <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider flex items-center gap-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Live
-                  </span>
-                </div>
-
+              <div className="p-6 md:p-8 flex flex-col">
                 <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-tight">
-                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-primary">
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
                     {project.title}
                   </a>
                 </h3>
-                <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
                   {project.description}
                 </p>
 
-                {/* Key Features Bullet Points */}
-                <div className="mb-6">
-                  <h4 className="text-xs font-semibold mb-3 text-foreground uppercase tracking-wider">Key Features</h4>
-                  <ul className="space-y-2">
-                    {project.features.map((feat, i) => (
-                      <li key={i} className="flex items-start space-x-2 text-xs text-muted-foreground leading-relaxed">
-                        <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="mb-6 mt-auto">
-                  <h4 className="text-xs font-semibold mb-3 text-foreground uppercase tracking-wider">Tech Stack</h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tech.map((t, i) => (
-                      <Badge key={i} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20 border-none text-xs px-2.5 py-0.5">
-                        {t}
-                      </Badge>
-                    ))}
-                  </div>
+                {/* Key Features */}
+                <ul className="space-y-2 mb-6">
+                  {project.features.map((feat, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed"
+                    >
+                      <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Tech */}
+                <div className="flex flex-wrap gap-1.5 mb-6 mt-auto">
+                  {project.tech.map((t, i) => (
+                    <span
+                      key={i}
+                      className="px-2.5 py-0.5 text-[11px] font-medium rounded-full bg-primary/10 text-primary"
+                    >
+                      {t}
+                    </span>
+                  ))}
                 </div>
 
-                <div className="pt-6 border-t border-border flex items-center justify-between gap-4">
-                  <Button asChild variant="outline" className="flex-1 rounded-full hover-trigger">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer">
-                      <FaGithub className="mr-2 h-4 w-4" />
-                      GitHub
+                {/* CTAs */}
+                <div className="pt-5 border-t border-border flex items-center gap-3">
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full flex-1"
+                  >
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <FaGithub className="h-4 w-4" />
+                      Source Code
                     </a>
                   </Button>
-                  <Button asChild className="flex-1 rounded-full group hover-trigger">
-                    <a href={project.live} target="_blank" rel="noopener noreferrer">
+                  <Button
+                    asChild
+                    size="sm"
+                    className="rounded-full flex-1 group/btn"
+                  >
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2"
+                    >
                       Live Demo
-                      <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                      <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                     </a>
                   </Button>
                 </div>
@@ -210,80 +238,94 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* More Projects Section */}
-        <div className="mt-24 flex flex-col items-center justify-center text-center mb-12">
-          <motion.h3 
+        {/* More Projects */}
+        <div className="mt-20">
+          <motion.h3
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl md:text-3xl font-bold mb-4 tracking-tight"
+            className="text-2xl font-bold mb-8 tracking-tight"
           >
-            More <span className="text-primary">Projects</span>
+            More Projects
           </motion.h3>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="w-16 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full"
-          />
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {moreProjects.map((project, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              whileHover={{ y: -6 }}
-              className="group flex flex-col rounded-2xl bg-card border border-border hover:border-primary/30 p-6 shadow-sm hover:shadow-lg transition-all duration-300"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
-                  <FaGithub className="h-6 w-6" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl">
+            {moreProjects.map((project, idx) => (
+              <motion.a
+                key={idx}
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.06 }}
+                whileHover={{ y: -4 }}
+                className="group flex flex-col rounded-2xl bg-card border border-border hover:border-primary/30 p-6 transition-all duration-300"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="p-2 rounded-xl bg-primary/10 text-primary">
+                    <FaGithub className="h-5 w-5" />
+                  </div>
+                  <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
                 </div>
-                <a 
-                  href={project.github} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <ExternalLink className="h-5 w-5" />
-                </a>
-              </div>
 
-              <h4 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                <h4 className="text-base font-bold mb-2 group-hover:text-primary transition-colors">
                   {project.title}
-                </a>
-              </h4>
-              
-              <p className="text-sm text-muted-foreground mb-6 flex-grow leading-relaxed">
-                {project.description}
-              </p>
+                </h4>
 
-              <div className="flex flex-wrap gap-1.5 mt-auto">
-                {project.tech.map((t, i) => (
-                  <Badge key={i} variant="secondary" className="bg-primary/5 text-primary hover:bg-primary/10 border-none text-[11px] px-2 py-0.5">
-                    {t}
-                  </Badge>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                <p className="text-xs text-muted-foreground mb-5 flex-grow leading-relaxed">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-1.5 mt-auto">
+                  {project.tech.map((t, i) => (
+                    <span
+                      key={i}
+                      className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-muted text-muted-foreground border border-border"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </motion.a>
+            ))}
+          </div>
         </div>
 
-        {/* View All Projects Button */}
-        <div className="mt-12 flex justify-center">
-          <Button asChild variant="ghost" className="group text-muted-foreground hover:text-primary transition-all duration-300 text-sm font-semibold hover:bg-transparent">
-            <a href="https://github.com/Shweta-rani05?tab=repositories" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
-              View All Projects on GitHub
-              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </a>
-          </Button>
+        {/* View All */}
+        <div className="mt-10">
+          <a
+            href="https://github.com/Shweta-rani05?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group"
+          >
+            View all projects on GitHub
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+          </a>
         </div>
       </div>
     </section>
+  );
+}
+
+function ArrowRight({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </svg>
   );
 }

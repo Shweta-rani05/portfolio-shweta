@@ -1,30 +1,27 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Moon, Sun, Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Button } from "./ui/button";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 50);
+  });
 
   const navLinks = [
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
     { name: "Projects", href: "#projects" },
+    { name: "Experience", href: "#experience" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -32,17 +29,17 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/70 backdrop-blur-md border-b border-border shadow-sm py-3"
+          ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm py-3"
           : "bg-transparent py-5"
       }`}
     >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold tracking-tight z-50">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl flex items-center justify-between">
+        <Link href="/" className="text-lg font-bold tracking-tight z-50">
           Shweta<span className="text-primary">.</span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -58,22 +55,22 @@ export default function Navbar() {
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="rounded-full"
           >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <Sun className="h-[1.125rem] w-[1.125rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute h-[1.125rem] w-[1.125rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
             <span className="sr-only">Toggle theme</span>
           </Button>
         </nav>
 
         {/* Mobile Nav Toggle */}
-        <div className="flex items-center space-x-4 md:hidden z-50">
+        <div className="flex items-center gap-3 md:hidden z-50">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="rounded-full"
           >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <Sun className="h-[1.125rem] w-[1.125rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute h-[1.125rem] w-[1.125rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
             <span className="sr-only">Toggle theme</span>
           </Button>
           <Button
@@ -82,9 +79,9 @@ export default function Navbar() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="h-5 w-5" />
             )}
           </Button>
         </div>
@@ -97,7 +94,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-background flex flex-col items-center justify-center space-y-8 md:hidden"
+            className="fixed inset-0 z-40 bg-background flex flex-col items-center justify-center gap-8 md:hidden"
           >
             {navLinks.map((link) => (
               <Link
