@@ -72,7 +72,7 @@ function PortraitCard() {
           className="rounded-2xl overflow-hidden border border-border bg-muted shadow-lg"
         >
           <Image
-            src="/avatar-portrait.png"
+            src="/avatar-portrait.jpeg"
             alt="Shweta Rani - avatar"
             width={400}
             height={400}
@@ -93,7 +93,7 @@ function PortraitCard() {
           className="rounded-2xl overflow-hidden border border-border bg-muted shadow-lg"
         >
           <Image
-            src="/portrait-placeholder.jpeg"
+            src="/portrait-placeholder.png"
             alt="Shweta Rani"
             width={400}
             height={400}
