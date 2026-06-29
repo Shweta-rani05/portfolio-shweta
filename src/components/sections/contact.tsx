@@ -221,6 +221,7 @@ export default function Contact() {
                     placeholder="Alex Chen"
                     {...register("name")}
                     className={errors.name ? "border-destructive" : ""}
+                    suppressHydrationWarning={true}
                   />
                   {errors.name && (
                     <p className="text-xs text-destructive">
@@ -242,6 +243,7 @@ export default function Contact() {
                     placeholder="alex@company.com"
                     {...register("email")}
                     className={errors.email ? "border-destructive" : ""}
+                    suppressHydrationWarning={true}
                   />
                   {errors.email && (
                     <p className="text-xs text-destructive">
@@ -264,6 +266,7 @@ export default function Contact() {
                   rows={6}
                   {...register("message")}
                   className={`resize-none ${errors.message ? "border-destructive" : ""}`}
+                  suppressHydrationWarning={true}
                 />
                 {errors.message && (
                   <p className="text-xs text-destructive">
@@ -277,6 +280,7 @@ export default function Contact() {
                 size="lg"
                 className="w-full sm:w-auto rounded-full group"
                 disabled={isSubmitting}
+                suppressHydrationWarning={true}
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
                 <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />

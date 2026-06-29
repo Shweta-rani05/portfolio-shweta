@@ -65,6 +65,7 @@ export default function Footer() {
             variant="ghost"
             size="sm"
             className="text-xs text-muted-foreground hover:text-primary transition-colors font-medium hover:bg-transparent flex items-center gap-1 p-0 h-auto order-3 md:order-none"
+            suppressHydrationWarning={true}
           >
             <span>Back to Top</span>
             <ArrowUp className="h-3.5 w-3.5" />
